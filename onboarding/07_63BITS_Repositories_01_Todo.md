@@ -47,9 +47,13 @@ Navigate to the **DTO** subdirectory and create a new file, **ProductsListDTO.cs
 
 ![ProductsListDTO.cs defining a public record ProductsListDTO with properties ProductID, ProductName, ProductPrice, ProductCoverImageFilename, CategoryID, ProductIsPublished, and ProductDateCreated](../images/07_63BITS_Repositories_01_Todo/image6.png)
 
+<br>
+
 Below is a demonstration of how the ProductsList SQL function's columns match up with the ProductsListDTO properties.
 
 ![SQL Server query window showing the ProductsList function and ProductsListDTO.cs side by side, with arrows connecting each selected column to the matching ProductsListDTO property](../images/07_63BITS_Repositories_01_Todo/image7.png)
+
+<br>
 
 Go back to the **ProductsRepository.cs** file and implement the ProductsList method according to the screenshot below.
 
