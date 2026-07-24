@@ -12,26 +12,26 @@
 
 2. Create a new database and name it **"SixtyThreeBitsOnboardingYourName"**.
 
-   ![](../images/01_Database_Development_Rules_Todo_01/image1.png)
+   ![](../images/01_Database_Development_Rules_01_Todo/image1.png)
 
-   ![](../images/01_Database_Development_Rules_Todo_01/image2.png)
+   ![](../images/01_Database_Development_Rules_01_Todo/image2.png)
 
 <br><br>
 
 3. Right-click on your new database and choose **New Query**. A new query window will open.
 
-   ![](../images/01_Database_Development_Rules_Todo_01/image3.png)
+   ![](../images/01_Database_Development_Rules_01_Todo/image3.png)
 
 <br><br>
 
 4. Go to your hard drive and open the **[SixtyThreeBitsOnboarding.sql](../scripts/SixtyThreeBitsOnboarding.sql)** file. Copy all scripts from this file and paste them into the new query window. It should look something like this:
 
-   ![](../images/01_Database_Development_Rules_Todo_01/image4.png)
+   ![](../images/01_Database_Development_Rules_01_Todo/image4.png)
 
 <br><br>
 
 5. Make sure you have selected your database for the new query window, then click the **Execute** button:
 
-   ![](../images/01_Database_Development_Rules_Todo_01/image5.png)
+   ![](../images/01_Database_Development_Rules_01_Todo/image5.png)
 
    This script is designed to create a standardized database structure, including tables, stored procedures, and functions.

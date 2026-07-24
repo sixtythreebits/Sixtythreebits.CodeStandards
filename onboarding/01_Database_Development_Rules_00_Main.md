@@ -138,9 +138,9 @@ Columns whose data type is `bit` must contain the **"Is"** keyword after the tab
 - **Incorrect:** ~~ProductPublished~~
 - **Correct:** ProductIsPublished
 
-![Example of a bit column named with the Is prefix](../images/01_Database_Development_Rules/image1.png)
+![Example of a bit column named with the Is prefix](../images/01_Database_Development_Rules_00_Main/image1.png)
 
-![Example query filtering on a bit column](../images/01_Database_Development_Rules/image2.png)
+![Example query filtering on a bit column](../images/01_Database_Development_Rules_00_Main/image2.png)
 
 <br>
 
@@ -150,9 +150,9 @@ A column representing a foreign key from another table should retain its origina
 
 For example: consider a scenario where products are associated with categories, and all categories are stored in the **Categories** table. The **Products** table should include a foreign key column that references <u>CategoryID</u>, the primary key in the **Categories** table. The foreign key column in the **Products** table must be named <u>CategoryID</u>, not ~~ProductCategoryID~~.
 
-![Products table referencing CategoryID as its foreign key](../images/01_Database_Development_Rules/image3.png)
+![Products table referencing CategoryID as its foreign key](../images/01_Database_Development_Rules_00_Main/image3.png)
 
-![SSMS table design showing the CategoryID foreign key column](../images/01_Database_Development_Rules/image4.png)
+![SSMS table design showing the CategoryID foreign key column](../images/01_Database_Development_Rules_00_Main/image4.png)
 
 <br>
 
@@ -169,7 +169,7 @@ For example: **Apple iPhone 15 Pro** and **Apple iPhone 15 Pro Max** are related
 
 For example: ***ProductIDTarget*** and ***ProductIDRelated***.
 
-![ProductsRelated table with ProductIDTarget and ProductIDRelated columns](../images/01_Database_Development_Rules/image5.png)
+![ProductsRelated table with ProductIDTarget and ProductIDRelated columns](../images/01_Database_Development_Rules_00_Main/image5.png)
 
 <br>
 
@@ -177,7 +177,7 @@ For example: ***ProductIDTarget*** and ***ProductIDRelated***.
 
 When a table includes several foreign key columns that all reference the same primary key column from another table, the default names given by SQL Server do not accurately reflect how those columns relate to one another.
 
-![Default SQL Server-generated foreign key names before renaming](../images/01_Database_Development_Rules/image6.png)
+![Default SQL Server-generated foreign key names before renaming](../images/01_Database_Development_Rules_00_Main/image6.png)
 
 Renaming these keys is **mandatory**! Use **Products** and **ProductsRelated** as an example and follow these naming instructions:
 
@@ -190,7 +190,7 @@ Renaming these keys is **mandatory**! Use **Products** and **ProductsRelated** a
 
 The final result is ***FK_ProductsRelated_Products_ProductIDTarget***.
 
-![Foreign key renamed to FK_ProductsRelated_Products_ProductIDTarget](../images/01_Database_Development_Rules/image7.png)
+![Foreign key renamed to FK_ProductsRelated_Products_ProductIDTarget](../images/01_Database_Development_Rules_00_Main/image7.png)
 
 <br>
 
@@ -208,7 +208,7 @@ Creating table triggers is **strictly prohibited** unless explicitly approved by
 
 Core tables must have primary keys. The primary key must have its **Identity Specification** property set to **Yes** and **Identity Seed** property set to **1**.
 
-![Primary key Identity Specification set to Yes with an Identity Seed of 1](../images/01_Database_Development_Rules/image8.png)
+![Primary key Identity Specification set to Yes with an Identity Seed of 1](../images/01_Database_Development_Rules_00_Main/image8.png)
 
 <br>
 
@@ -222,7 +222,7 @@ For example, the **Products** table must have a **ProductDateCreated** column:
 - `DateCreated` column must **NOT ALLOW NULL**.
 - `DateCreated` column default value must be `GETDATE()`.
 
-![ProductDateCreated column configured as datetime, not nullable, defaulting to GETDATE()](../images/01_Database_Development_Rules/image9.png)
+![ProductDateCreated column configured as datetime, not nullable, defaulting to GETDATE()](../images/01_Database_Development_Rules_00_Main/image9.png)
 
 ---
 
@@ -246,7 +246,7 @@ For example:
 
 Since SSMS lists stored procedures and functions alphabetically, starting every name with the table name naturally groups related routines together — improving readability, navigation, and visual organization.
 
-![Stored procedures and functions grouped alphabetically by table name in SSMS](../images/01_Database_Development_Rules/image10.png)
+![Stored procedures and functions grouped alphabetically by table name in SSMS](../images/01_Database_Development_Rules_00_Main/image10.png)
 
 <br>
 
@@ -949,7 +949,7 @@ To improve maintainability and avoid hardcoding these constants across procedure
 - `dbo.ConstantsNullValueForDate()`
 - `dbo.ConstantsNullValueForString()`
 
-![ConstantsNullValueForNumeric, ConstantsNullValueForDate, and ConstantsNullValueForString functions](../images/01_Database_Development_Rules/image11.png)
+![ConstantsNullValueForNumeric, ConstantsNullValueForDate, and ConstantsNullValueForString functions](../images/01_Database_Development_Rules_00_Main/image11.png)
 
 The final solution for the problem is as follows:
 
