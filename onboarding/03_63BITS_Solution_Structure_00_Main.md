@@ -38,7 +38,7 @@ The application uses a monolithic architecture and consists of two projects:
 1. **SixtyThreeBits.Core** — Contains repositories, API services, business logic, utilities, abstractions and shared libraries.
 2. **SixtyThreeBits.Web** — An ASP.NET Core web application that includes models, view-models, controllers, views, web-specific libraries and static assets (images, JavaScript, CSS).
 
-![Solution Explorer showing the SixtyThreeBits.Onboarding solution with its two projects, SixtyThreeBits.Core and SixtyThreeBits.Web](../images/06_63BITS_Solution_Structure_00_Main/image1.png)
+![Solution Explorer showing the SixtyThreeBits.Onboarding solution with its two projects, SixtyThreeBits.Core and SixtyThreeBits.Web](../images/03_63BITS_Solution_Structure_00_Main/image1.png)
 
 <br>
 
@@ -48,7 +48,7 @@ This class library represents the core domain of the application. It handles dat
 
 Below is an overview of the **SixtyThreeBits.Core** folder structure.
 
-![Solution Explorer showing the SixtyThreeBits.Core project expanded, with its Abstractions, Factories, Infrastructure, Libraries, and Utilities folders](../images/06_63BITS_Solution_Structure_00_Main/image2.png)
+![Solution Explorer showing the SixtyThreeBits.Core project expanded, with its Abstractions, Factories, Infrastructure, Libraries, and Utilities folders](../images/03_63BITS_Solution_Structure_00_Main/image2.png)
 
 <br>
 
@@ -95,7 +95,7 @@ The project is organized into the following directories:
 - **Models** — Model and ViewModel classes
 - **Views** — View templates and layouts
 
-![Solution Explorer showing the SixtyThreeBits.Web project expanded, with its wwwroot, Controllers, Domain, Filters, Models, and Views folders alongside Program.cs, Startup.cs, and web.config](../images/06_63BITS_Solution_Structure_00_Main/image3.png)
+![Solution Explorer showing the SixtyThreeBits.Web project expanded, with its wwwroot, Controllers, Domain, Filters, Models, and Views folders alongside Program.cs, Startup.cs, and web.config](../images/03_63BITS_Solution_Structure_00_Main/image3.png)
 
 <br>
 
@@ -103,7 +103,7 @@ The project is organized into the following directories:
 
 Directory containing all static assets served to the client, including website images, stylesheets, JavaScript files, and third-party libraries used as plugins.
 
-![wwwroot folder expanded, showing its css, html, images, js, plugins, and upload subfolders](../images/06_63BITS_Solution_Structure_00_Main/image4.png)
+![wwwroot folder expanded, showing its css, html, images, js, plugins, and upload subfolders](../images/03_63BITS_Solution_Structure_00_Main/image4.png)
 
 <br>
 
@@ -115,7 +115,7 @@ Contains all MVC controller classes, organized into three subfolders: **Admin** 
 - **Base** — Base controller class inherited by all other controllers
 - **Website** — Controllers for public-facing website pages
 
-![Controllers folder expanded, showing its Admin, Base, and Website subfolders](../images/06_63BITS_Solution_Structure_00_Main/image5.png)
+![Controllers folder expanded, showing its Admin, Base, and Website subfolders](../images/03_63BITS_Solution_Structure_00_Main/image5.png)
 
 <br>
 
@@ -127,7 +127,7 @@ Contains classes and libraries providing web-application-specific functionality,
 - **Utilities** — Helper and utility classes specific to the Web project
 - **ViewModels** — ViewModel classes exclusively for partial views and layouts (not for regular views)
 
-![Domain folder expanded, showing its Libraries, Utilities, and ViewModels subfolders](../images/06_63BITS_Solution_Structure_00_Main/image6.png)
+![Domain folder expanded, showing its Libraries, Utilities, and ViewModels subfolders](../images/03_63BITS_Solution_Structure_00_Main/image6.png)
 
 <br>
 
@@ -143,7 +143,7 @@ Action filters are critical components that influence application behavior and a
 - <https://devblogs.microsoft.com/dotnet/attribute-routing-in-asp-net-mvc-5/>
 - <https://www.tutorialspoint.com/asp.net_mvc/asp.net_mvc_filters.htm>
 
-![Filters folder expanded, showing its Admin and Website subfolders](../images/06_63BITS_Solution_Structure_00_Main/image7.png)
+![Filters folder expanded, showing its Admin and Website subfolders](../images/03_63BITS_Solution_Structure_00_Main/image7.png)
 
 <br>
 
@@ -155,7 +155,7 @@ Contains all MVC model classes, organized into three subfolders: **Admin** and *
 - **Base** — Base model class inherited by all other models
 - **Website** — Model classes for public-facing website pages
 
-![Models folder expanded, showing its Admin, Base, and Website subfolders](../images/06_63BITS_Solution_Structure_00_Main/image8.png)
+![Models folder expanded, showing its Admin, Base, and Website subfolders](../images/03_63BITS_Solution_Structure_00_Main/image8.png)
 
 <br>
 
@@ -167,4 +167,4 @@ Contains all view templates and layouts, organized into three subfolders: **Admi
 - **Website** — View templates and layouts for public-facing website pages
 - **Shared** — Partial views and common components used across Admin and Website areas
 
-![Views folder expanded, showing its Admin, Shared, and Website subfolders](../images/06_63BITS_Solution_Structure_00_Main/image9.png)
+![Views folder expanded, showing its Admin, Shared, and Website subfolders](../images/03_63BITS_Solution_Structure_00_Main/image9.png)

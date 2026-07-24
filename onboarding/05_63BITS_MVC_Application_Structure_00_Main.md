@@ -28,7 +28,7 @@ The application implements an MVVM-inspired architecture where Models, Controlle
 
 The schema below is a step-by-step visual representation of the request lifecycle.
 
-![Diagram of the MVC request lifecycle: the browser sends a request (Step 1) to the Controller, which calls the Model (Step 2); the Model calls Repositories (Steps 3-4) and Build View Model (Steps 5-6), then returns to the Controller (Step 7); the Controller passes the ViewModel to the View (Step 8), which builds sections 2.1-2.3 (Step 9) and returns the final HTML to the browser (Step 10).](../images/08_63BITS_MVC_Application_Structure_00_Main/image1.jpeg)
+![Diagram of the MVC request lifecycle: the browser sends a request (Step 1) to the Controller, which calls the Model (Step 2); the Model calls Repositories (Steps 3-4) and Build View Model (Steps 5-6), then returns to the Controller (Step 7); the Controller passes the ViewModel to the View (Step 8), which builds sections 2.1-2.3 (Step 9) and returns the final HTML to the browser (Step 10).](../images/05_63BITS_MVC_Application_Structure_00_Main/image1.jpeg)
 
 <br>
 
@@ -163,7 +163,7 @@ A model that builds data for its view must have a nested class named `ViewModel`
 
 **Golden Rule:** `ViewModel` must contain only those properties that are actually used on the view. Properties not used on the view are not allowed.
 
-![Code editor showing ProductsWebsiteModel in the SixtyThreeBits.Web.Models.Website namespace, with a Methods region and a nested ViewModel class containing Properties and Nested Classes regions.](../images/08_63BITS_MVC_Application_Structure_00_Main/image2.png)
+![Code editor showing ProductsWebsiteModel in the SixtyThreeBits.Web.Models.Website namespace, with a Methods region and a nested ViewModel class containing Properties and Nested Classes regions.](../images/05_63BITS_MVC_Application_Structure_00_Main/image2.png)
 
 <br>
 
@@ -263,7 +263,7 @@ A controller must only call the model to receive a `ViewModel`, then return the 
 
 All calculations, and all repository, API, library, or business logic calls, must happen within the model's method while building the `ViewModel`.
 
-![Code editor showing ProductsWebsiteController in the SixtyThreeBits.Web.Controllers.Website namespace, inheriting WebsiteControllerBase<ProductsWebsiteModel>, with a _viewName constant and a Products action that awaits Model.GetViewModel() and returns View(_viewName, viewModel).](../images/08_63BITS_MVC_Application_Structure_00_Main/image3.png)
+![Code editor showing ProductsWebsiteController in the SixtyThreeBits.Web.Controllers.Website namespace, inheriting WebsiteControllerBase<ProductsWebsiteModel>, with a _viewName constant and a Products action that awaits Model.GetViewModel() and returns View(_viewName, viewModel).](../images/05_63BITS_MVC_Application_Structure_00_Main/image3.png)
 
 <br>
 
@@ -324,7 +324,7 @@ Views must consist of pure HTML. MVC Helpers must not be used to build standard 
 
 Formatting data on the view is strongly prohibited. All formatting must happen in model methods; the view must receive already-formatted data and simply display it.
 
-![Razor view code for ProductsWebsiteModel.ViewModel, showing a foreach loop over Model.Products rendering pure HTML cards, with @Html.Raw used only to output already-formatted ProductName and ProductPrice values.](../images/08_63BITS_MVC_Application_Structure_00_Main/image4.png)
+![Razor view code for ProductsWebsiteModel.ViewModel, showing a foreach loop over Model.Products rendering pure HTML cards, with @Html.Raw used only to output already-formatted ProductName and ProductPrice values.](../images/05_63BITS_MVC_Application_Structure_00_Main/image4.png)
 
 <br>
 

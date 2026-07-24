@@ -141,15 +141,15 @@ This console application demonstrates how the `Calculator` class inherits from `
 
 Check the `Calculator` class methods to see how `Division` is wrapped in `TryToReturn`.
 
-![Calculator class Division method wrapped in TryToReturn, showing the try/catch delegate pattern](../images/04_TryCatchWrapper63_00_Main/image1.png)
+![Calculator class Division method wrapped in TryToReturn, showing the try/catch delegate pattern](../images/02_63BITS_CSharp_Application_Development_Rules_02_TryCatchWrapper63/image1.png)
 
 Check the `Main` method to see how `Division` is called and the error is handled. The `displayErrorMessage` and `showErrorLogTxtFile` methods are created purely for demonstration purposes, to display the error message in the console application.
 
-![Main method calling Division and handling the resulting error, with displayErrorMessage and showErrorLogTxtFile demo methods](../images/04_TryCatchWrapper63_00_Main/image2.png)
+![Main method calling Division and handling the resulting error, with displayErrorMessage and showErrorLogTxtFile demo methods](../images/02_63BITS_CSharp_Application_Development_Rules_02_TryCatchWrapper63/image2.png)
 
 Calling `calculator.Division(dividend: 5, divisor: 0)` gracefully catches the exception and produces a log record in the **ErrorLog.txt** file.
 
-![ErrorLog.txt file showing the logged exception from the division-by-zero call](../images/04_TryCatchWrapper63_00_Main/image3.png)
+![ErrorLog.txt file showing the logged exception from the division-by-zero call](../images/02_63BITS_CSharp_Application_Development_Rules_02_TryCatchWrapper63/image3.png)
 
 <br>
 
@@ -161,4 +161,4 @@ A helper utility automatically builds formatted log strings from method signatur
 
 Copy and paste your method signature into the text field and click the **Generate Log String** button.
 
-![Log string helper web tool for generating formatted log strings from a method signature](../images/04_TryCatchWrapper63_00_Main/image4.png)
+![Log string helper web tool for generating formatted log strings from a method signature](../images/02_63BITS_CSharp_Application_Development_Rules_02_TryCatchWrapper63/image4.png)

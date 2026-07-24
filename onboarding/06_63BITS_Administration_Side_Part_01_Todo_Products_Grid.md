@@ -19,13 +19,13 @@ Before starting the implementation, we must introduce an additional database fun
 
 Go back to your database and create the `CategoriesList()` function.
 
-![SQL Server Management Studio showing the CategoriesList user-defined table function, which selects CategoryID and CategoryName from the Categories table](../images/09_63BITS_Administration_Side_Part_01_Todo/image1.png)
+![SQL Server Management Studio showing the CategoriesList user-defined table function, which selects CategoryID and CategoryName from the Categories table](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image1.png)
 
 <br>
 
 Next, go back to your application **SixtyThreeBits.Core**, add `CategoriesListDTO`, and add a `CategoriesList()` method to the `ProductsRepository` class.
 
-![ProductsRepository.cs showing the CategoriesList() method, which builds a SqlQueryBuilder against the CategoriesList database function, orders results by CategoryName, and returns the list](../images/09_63BITS_Administration_Side_Part_01_Todo/image2.png)
+![ProductsRepository.cs showing the CategoriesList() method, which builds a SqlQueryBuilder against the CategoriesList database function, orders results by CategoryName, and returns the list](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image2.png)
 
 <br>
 
@@ -33,7 +33,7 @@ Next, go back to your application **SixtyThreeBits.Core**, add `CategoriesListDT
 
 Implementation starts with reviewing the expected layout of the Products Listing Page and identifying the UI components required to build it.
 
-![Wireframe of the Products Listing Page layout: an Add button above a DevExtreme DataGrid with columns for edit/delete actions, a details link, and product attributes](../images/09_63BITS_Administration_Side_Part_01_Todo/image3.png)
+![Wireframe of the Products Listing Page layout: an Add button above a DevExtreme DataGrid with columns for edit/delete actions, a details link, and product attributes](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image3.png)
 
 The page should include the following elements:
 
@@ -67,7 +67,7 @@ Navigate to **SixtyThreeBits.Web → Models → Admin** and create a directory n
 
 Create the `ProductsAdminModel` class according to the screenshot below.
 
-![Solution Explorer showing the new ProductsAdminModel.cs file under Models/Admin/Products, with the class declared as public class ProductsAdminModel : AdminModelBase](../images/09_63BITS_Administration_Side_Part_01_Todo/image4.png)
+![Solution Explorer showing the new ProductsAdminModel.cs file under Models/Admin/Products, with the class declared as public class ProductsAdminModel : AdminModelBase](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image4.png)
 
 <br>
 
@@ -80,7 +80,7 @@ The ViewModel structure for pages that utilize a DevExtreme DataGrid is more com
 
 Implement this structure according to the screenshot below.
 
-![ProductsAdminModel.cs with the nested class structure implemented: ViewModel containing GridModel, which contains the GridItem record](../images/09_63BITS_Administration_Side_Part_01_Todo/image5.png)
+![ProductsAdminModel.cs with the nested class structure implemented: ViewModel containing GridModel, which contains the GridItem record](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image5.png)
 
 <br>
 
@@ -95,7 +95,7 @@ First, let's build `GridItem` according to the instructions below.
 - `GridItem` must always be a record.
 - Its properties must always be declared using `get; init;`.
 
-![ProductsAdminModel.cs GridItem record declaring ProductID, ProductName, CategoryID, ProductPrice, ProductIsPublished, ProductDateCreated, and UrlProperties properties, all using get; init;](../images/09_63BITS_Administration_Side_Part_01_Todo/image6.png)
+![ProductsAdminModel.cs GridItem record declaring ProductID, ProductName, CategoryID, ProductPrice, ProductIsPublished, ProductDateCreated, and UrlProperties properties, all using get; init;](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image6.png)
 
 Each property of this class represents a column of the grid.
 
@@ -109,7 +109,7 @@ Next, let's add a `_categories` property to the `GridModel` and assign its value
 
 The `KeyValueTuple` class, provided by the `SixtyThreeBits.Libraries` namespace, represents a pair of **Key** and **Value**. This class is specifically designed to supply data to drop-down and lookup components throughout the system.
 
-![ProductsAdminModel.cs GridModel class with a readonly IReadOnlyList<KeyValueTuple<int?, string>> _categories field, assigned through a constructor that accepts the categories collection](../images/09_63BITS_Administration_Side_Part_01_Todo/image7.png)
+![ProductsAdminModel.cs GridModel class with a readonly IReadOnlyList<KeyValueTuple<int?, string>> _categories field, assigned through a constructor that accepts the categories collection](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image7.png)
 
 <br>
 
@@ -127,7 +127,7 @@ Inheriting `GridModel` from `DevExtremeGridModelBase63` will require a `Render()
 
 Implement the `Render` method according to the screenshot below.
 
-![ProductsAdminModel.cs GridModel.Render(IHtmlHelper html) method showing CreateGridWithStartupValues, .ID("ProductsGrid"), .OnInitialized("model.onGridInit"), and the .Columns(...) configuration for all grid columns](../images/09_63BITS_Administration_Side_Part_01_Todo/image8.png)
+![ProductsAdminModel.cs GridModel.Render(IHtmlHelper html) method showing CreateGridWithStartupValues, .ID("ProductsGrid"), .OnInitialized("model.onGridInit"), and the .Columns(...) configuration for all grid columns](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image8.png)
 
 <br>
 
@@ -163,7 +163,7 @@ columns.Add().InitDetailsUrlCellTemplate(nameof(GridItem.UrlProperties))
 
 `.InitDetailsUrlCellTemplate` is our custom-built extension method that configures this column to display a blue icon and link to the product properties page. It uses the `UrlProperties` property of the `GridItem` class for building the proper URL.
 
-![Products DataGrid row showing the blue details icon link in the command column, preceding the edit and delete buttons](../images/09_63BITS_Administration_Side_Part_01_Todo/image9.png)
+![Products DataGrid row showing the blue details icon link in the command column, preceding the edit and delete buttons](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image9.png)
 
 <br>
 
@@ -192,9 +192,9 @@ columns.AddFor(m => m.CategoryID).InitLookupColumn(data: _categories)
 
 `.InitLookupColumn(...)` is our custom-built extension method that does all necessary setup on the DevExtreme DataGrid to display a drop-down column, filled with the collection of `_categories`.
 
-![DataGrid row showing an empty Category cell in edit mode, with the drop-down not yet opened](../images/09_63BITS_Administration_Side_Part_01_Todo/image10.png)
+![DataGrid row showing an empty Category cell in edit mode, with the drop-down not yet opened](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image10.png)
 
-![DataGrid Category cell in edit mode with the drop-down open, listing the available category options](../images/09_63BITS_Administration_Side_Part_01_Todo/image11.png)
+![DataGrid Category cell in edit mode with the drop-down open, listing the available category options](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image11.png)
 
 <br>
 
@@ -238,7 +238,7 @@ Now let's move to building a ViewModel.
 
 Add `IsAddNewButtonVisible` and `Grid` properties to the `ViewModel`.
 
-![ProductsAdminModel.cs ViewModel class declaring public bool IsAddNewButtonVisible and public GridModel Grid properties](../images/09_63BITS_Administration_Side_Part_01_Todo/image12.png)
+![ProductsAdminModel.cs ViewModel class declaring public bool IsAddNewButtonVisible and public GridModel Grid properties](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image12.png)
 
 <br>
 
@@ -273,7 +273,7 @@ It has only two properties:
 
 This method uses the repository to retrieve the list of products from the database, builds the proper `AjaxResponse` viewModel object, and handles errors if they occur.
 
-![ProductsAdminModel.cs Grid() method: creates a repository via RepositoryFactory, awaits repository.ProductsList(), and maps the results into AjaxResponse.Data as a list of GridItem objects](../images/09_63BITS_Administration_Side_Part_01_Todo/image13.png)
+![ProductsAdminModel.cs Grid() method: creates a repository via RepositoryFactory, awaits repository.ProductsList(), and maps the results into AjaxResponse.Data as a list of GridItem objects](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image13.png)
 
 <br>
 
@@ -281,7 +281,7 @@ This method uses the repository to retrieve the list of products from the databa
 
 This method uses the repository to add a new product to the database, builds the proper `AjaxResponse` viewModel object, and handles errors if they occur.
 
-![ProductsAdminModel.cs GridAdd(DevExtremeSubmitModelKeyValues63 submitModel) method: deserializes submitModel.Values into a GridItem, calls repository.ProductsIUD with databaseAction INSERT, and sets viewModel.IsSuccess and viewModel.Data from the repository result](../images/09_63BITS_Administration_Side_Part_01_Todo/image14.png)
+![ProductsAdminModel.cs GridAdd(DevExtremeSubmitModelKeyValues63 submitModel) method: deserializes submitModel.Values into a GridItem, calls repository.ProductsIUD with databaseAction INSERT, and sets viewModel.IsSuccess and viewModel.Data from the repository result](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image14.png)
 
 <br>
 
@@ -323,7 +323,7 @@ viewModel.Data = repository.ErrorMessage;
 
 This method uses the repository to update a product record in the database, builds the proper `AjaxResponse` viewModel object, and handles errors if they occur.
 
-![ProductsAdminModel.cs GridUpdate(DevExtremeSubmitModelKeyValues63 submitModel) method: reads productID from submitModel.Key, deserializes submitModel.Values into a GridItem, and calls repository.ProductsIUD with databaseAction UPDATE and the parsed productID](../images/09_63BITS_Administration_Side_Part_01_Todo/image15.png)
+![ProductsAdminModel.cs GridUpdate(DevExtremeSubmitModelKeyValues63 submitModel) method: reads productID from submitModel.Key, deserializes submitModel.Values into a GridItem, and calls repository.ProductsIUD with databaseAction UPDATE and the parsed productID](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image15.png)
 
 `GridUpdate` code is very similar to `GridAdd`. It has only three minor differences:
 
@@ -337,7 +337,7 @@ This method uses the repository to update a product record in the database, buil
 
 This method uses the repository to delete a product record from the database, builds the proper `AjaxResponse` viewModel object, and handles errors if they occur.
 
-![ProductsAdminModel.cs GridDelete(DevExtremeSubmitModelKeyValues63 submitModel) method: reads productID from submitModel.Key and calls repository.ProductsIUD with databaseAction DELETE and product set to null](../images/09_63BITS_Administration_Side_Part_01_Todo/image16.png)
+![ProductsAdminModel.cs GridDelete(DevExtremeSubmitModelKeyValues63 submitModel) method: reads productID from submitModel.Key and calls repository.ProductsIUD with databaseAction DELETE and product set to null](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image16.png)
 
 `GridDelete` code is a simplified version of `GridUpdate`:
 
@@ -351,7 +351,7 @@ This method uses the repository to delete a product record from the database, bu
 
 This method cannot be fully implemented at this stage, as it requires the controller class and its action methods to exist first. We'll finalize it once the controller is ready. For now, we create a blueprint and leave it incomplete.
 
-![ProductsAdminModel.cs GetViewModel() method showing an incomplete blueprint: it creates a new ViewModel instance with an empty line left for the URL and permission setup that will be added later, then returns the viewModel](../images/09_63BITS_Administration_Side_Part_01_Todo/image17.png)
+![ProductsAdminModel.cs GetViewModel() method showing an incomplete blueprint: it creates a new ViewModel instance with an empty line left for the URL and permission setup that will be added later, then returns the viewModel](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image17.png)
 
 <br>
 
@@ -381,7 +381,7 @@ Create the `ProductsAdminController` class, inherit it from the `AdminController
 
 Once the class is created, declare the `_viewName` property and action methods according to the screenshot below.
 
-![ProductsAdminController.cs showing the [Route("admin/products")] class attribute, const string _viewName, and the Products, Grid, GridAdd, GridUpdate, and GridDelete action methods each decorated with their own [Route] attribute](../images/09_63BITS_Administration_Side_Part_01_Todo/image18.png)
+![ProductsAdminController.cs showing the [Route("admin/products")] class attribute, const string _viewName, and the Products, Grid, GridAdd, GridUpdate, and GridDelete action methods each decorated with their own [Route] attribute](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image18.png)
 
 <br>
 
@@ -393,7 +393,7 @@ Model.PluginsClient.EnableDevextreme(true);
 
 `PluginsClient` is a model property inherited from `ModelBase` through the inheritance chain. It manages the addition of client-side JavaScript and CSS files stored in the **wwwroot → plugins** directory. All client-side plugins in this directory are pre-registered in `PluginsClient` and can be selectively added to pages as needed.
 
-![Solution Explorer showing the wwwroot/plugins directory, listing plugin folders including devextreme, alongside the ProductsAdminController.cs Products() action that calls Model.PluginsClient.EnableDevextreme(true)](../images/09_63BITS_Administration_Side_Part_01_Todo/image19.png)
+![Solution Explorer showing the wwwroot/plugins directory, listing plugin folders including devextreme, alongside the ProductsAdminController.cs Products() action that calls Model.PluginsClient.EnableDevextreme(true)](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image19.png)
 
 <br>
 
@@ -403,7 +403,7 @@ As explained above, the `GridAdd`, `GridUpdate`, and `GridDelete` action methods
 
 The screenshot below demonstrates how the data is sent.
 
-![Browser developer tools Network tab showing a PUT request to the update endpoint, with Form Data containing key: "2" and values as a JSON string of ProductName, CategoryID, and ProductPrice](../images/09_63BITS_Administration_Side_Part_01_Todo/image20.png)
+![Browser developer tools Network tab showing a PUT request to the update endpoint, with Form Data containing key: "2" and values as a JSON string of ProductName, CategoryID, and ProductPrice](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image20.png)
 
 <br>
 
@@ -430,7 +430,7 @@ DevExtreme DataGrids require JSON data in a specific format from the server. Our
 
 Now that all necessary components are in place, we can complete the `GetViewModel()` method. Implement it according to the screenshot below.
 
-![ProductsAdminModel.cs completed GetViewModel() method: retrieves categories via the repository, maps them to KeyValueTuple pairs, constructs the GridModel with UrlLoad/UrlAddNew/UrlUpdate/UrlDelete, and sets button visibility using User.HasPermission](../images/09_63BITS_Administration_Side_Part_01_Todo/image21.png)
+![ProductsAdminModel.cs completed GetViewModel() method: retrieves categories via the repository, maps them to KeyValueTuple pairs, constructs the GridModel with UrlLoad/UrlAddNew/UrlUpdate/UrlDelete, and sets button visibility using User.HasPermission](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image21.png)
 
 <br>
 
@@ -463,7 +463,7 @@ Navigate to **SixtyThreeBits.Web → Views → Admin** and create a directory na
 
 Implement this view according to the screenshot below.
 
-![ProductsAdminView.cshtml with @model ProductsAdminModel.ViewModel, a card containing the conditional Add button (@if Model.IsAddNewButtonVisible) and a second card that calls @Model.Grid.Render(Html) to render the DataGrid](../images/09_63BITS_Administration_Side_Part_01_Todo/image22.png)
+![ProductsAdminView.cshtml with @model ProductsAdminModel.ViewModel, a card containing the conditional Add button (@if Model.IsAddNewButtonVisible) and a second card that calls @Model.Grid.Render(Html) to render the DataGrid](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image22.png)
 
 <br>
 
@@ -474,7 +474,7 @@ This JavaScript file, which we are going to create, is specifically designed and
 **The Goal**
 When users click the "Add" button, the JavaScript opens the DevExtreme DataGrid in add mode, allowing them to insert a new product record.
 
-![Products page with the Add button highlighted and the grid's inline add row revealed, showing empty input cells for Product and the Category drop-down](../images/09_63BITS_Administration_Side_Part_01_Todo/image23.png)
+![Products page with the Add button highlighted and the grid's inline add row revealed, showing empty input cells for Product and the Category drop-down](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image23.png)
 
 <br>
 
@@ -482,7 +482,7 @@ Navigate to **SixtyThreeBits.Web → wwwroot → js → admin** and create a dir
 
 Implement the JavaScript according to the screenshot below.
 
-![ProductsAdminView.js showing the const model object with a grid property and onGridInit(e) method, plus a $(function () {...}) block that binds a click handler on '.js-add-new-button' calling model.grid.addRow()](../images/09_63BITS_Administration_Side_Part_01_Todo/image24.png)
+![ProductsAdminView.js showing the const model object with a grid property and onGridInit(e) method, plus a $(function () {...}) block that binds a click handler on '.js-add-new-button' calling model.grid.addRow()](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image24.png)
 
 <br>
 
@@ -518,9 +518,9 @@ The `globals` object is defined in **SixtyThreeBits.Web → wwwroot → js → g
 
 This is how we include the JavaScript file on a page. It is important to note that the JavaScript file must be included at the end of the HTML code, just before the closing `</body>` tag. This ensures that the DOM is fully loaded before the script executes.
 
-![ProductsAdminView.cshtml with a @section FooterSection block containing <script src="~/js/admin/products/productsadminview.js"></script>](../images/09_63BITS_Administration_Side_Part_01_Todo/image25.png)
+![ProductsAdminView.cshtml with a @section FooterSection block containing <script src="~/js/admin/products/productsadminview.js"></script>](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image25.png)
 
-![Side-by-side of _Layout.cshtml and ProductsAdminView.cshtml showing @RenderSection("FooterSection", false) in the layout matching the @section FooterSection block defined in the view](../images/09_63BITS_Administration_Side_Part_01_Todo/image26.png)
+![Side-by-side of _Layout.cshtml and ProductsAdminView.cshtml showing @RenderSection("FooterSection", false) in the layout matching the @section FooterSection block defined in the view](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image26.png)
 
 <br>
 
@@ -545,25 +545,25 @@ Launch the application by pressing **CTRL + F5**. Once the application is runnin
 Username: **administrator**
 Password: **asdf**
 
-![63BITS Onboarding admin login page at localhost/admin/login, showing Username and Password fields, a Remember Me checkbox, and a Login button](../images/09_63BITS_Administration_Side_Part_01_Todo/image27.png)
+![63BITS Onboarding admin login page at localhost/admin/login, showing Username and Password fields, a Remember Me checkbox, and a Login button](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image27.png)
 
 <br>
 
 Once logged in, the dashboard page will be loaded.
 
-![63BITS Onboarding admin dashboard showing summary cards for Users, Products, Orders, and Income, along with Recent Registrations, Recent Orders, and Recent Activity panels](../images/09_63BITS_Administration_Side_Part_01_Todo/image28.png)
+![63BITS Onboarding admin dashboard showing summary cards for Users, Products, Orders, and Income, along with Recent Registrations, Recent Orders, and Recent Activity panels](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image28.png)
 
 <br>
 
 Expand **User Management** from the left menu and click the **Permissions** item.
 
-![Admin dashboard with the User Management menu expanded, highlighting the Permissions link in the left sidebar](../images/09_63BITS_Administration_Side_Part_01_Todo/image29.png)
+![Admin dashboard with the User Management menu expanded, highlighting the Permissions link in the left sidebar](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image29.png)
 
 <br>
 
 Once the permissions page is loaded, click the "Plus" button on the "Administration" row.
 
-![Permissions page listing Dashboard, User Management, System, and Administration rows, with the add ("+") button on the Administration row highlighted](../images/09_63BITS_Administration_Side_Part_01_Todo/image30.png)
+![Permissions page listing Dashboard, User Management, System, and Administration rows, with the add ("+") button on the Administration row highlighted](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image30.png)
 
 <br>
 
@@ -574,13 +574,13 @@ Inputs for adding a new row will be revealed. Type the following for each input 
 - **Sort Index**: Use the next sort index according to what sort indexes are provided before.
 - **Menu Item**: **Checked** — check this box to instruct the system that the Products page must be part of the left menu.
 
-![Permissions grid showing a new "Products" row being added under Administration, with Page Path "/admin/products", Sort Index 1, and the Menu checkbox checked](../images/09_63BITS_Administration_Side_Part_01_Todo/image31.png)
+![Permissions grid showing a new "Products" row being added under Administration, with Page Path "/admin/products", Sort Index 1, and the Menu checkbox checked](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image31.png)
 
 <br>
 
 Next, register permissions for the DevExtreme DataGrid CRUD actions, exactly as shown in the image below. Keep the hierarchy exactly as shown in the image.
 
-![Permissions grid showing the Products permission expanded into child rows: Products Grid, Products Grid Add, Products Grid Update, and Products Grid Delete, each with their own page path](../images/09_63BITS_Administration_Side_Part_01_Todo/image32.png)
+![Permissions grid showing the Products permission expanded into child rows: Products Grid, Products Grid Add, Products Grid Update, and Products Grid Delete, each with their own page path](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image32.png)
 
 <br>
 
@@ -588,13 +588,13 @@ Navigate to the **Role → Permissions** page to assign the newly registered per
 
 Scroll the permission tree down, check the boxes for the newly registered permissions, and click Save.
 
-![Role → Permissions page with the Administrator role selected and the Administration → Products permission tree (Products, Products Grid, Products Grid Add/Update/Delete) highlighted with unchecked boxes, next to the Save button](../images/09_63BITS_Administration_Side_Part_01_Todo/image33.png)
+![Role → Permissions page with the Administrator role selected and the Administration → Products permission tree (Products, Products Grid, Products Grid Add/Update/Delete) highlighted with unchecked boxes, next to the Save button](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image33.png)
 
 <br>
 
 Once permissions are saved, click the "Relogin" button, and the "Products" page will be revealed from the left menu.
 
-![Role → Permissions page with the newly checked Products permission tree, the Administration menu item now showing a Products submenu, and the user menu's Relogin option highlighted](../images/09_63BITS_Administration_Side_Part_01_Todo/image34.png)
+![Role → Permissions page with the newly checked Products permission tree, the Administration menu item now showing a Products submenu, and the user menu's Relogin option highlighted](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image34.png)
 
 <br>
 
@@ -602,4 +602,4 @@ Once permissions are saved, click the "Relogin" button, and the "Products" page 
 
 Navigate to the products page and test the product CRUD operations.
 
-![Products admin page at localhost/admin/products showing the Products DataGrid populated with four sample products, each with edit, delete, and details actions](../images/09_63BITS_Administration_Side_Part_01_Todo/image35.png)
+![Products admin page at localhost/admin/products showing the Products DataGrid populated with four sample products, each with edit, delete, and details actions](../images/06_63BITS_Administration_Side_Part_01_Todo_Products_Grid/image35.png)

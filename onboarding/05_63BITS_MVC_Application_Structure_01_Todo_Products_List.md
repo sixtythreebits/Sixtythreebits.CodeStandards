@@ -13,7 +13,7 @@ Navigate to **SixtyThreeBits.Web → Models → Website** and create a new direc
 
 Inside the **Products** directory, create a new file named **ProductsWebsiteModel.cs**.
 
-![Solution Explorer showing the new ProductsWebsiteModel.cs file under Models/Website/Products, with the class declared as public class ProductsWebsiteModel : WebsiteModelBase](../images/08_63BITS_MVC_Application_Structure_01_Todo/image1.png)
+![Solution Explorer showing the new ProductsWebsiteModel.cs file under Models/Website/Products, with the class declared as public class ProductsWebsiteModel : WebsiteModelBase](../images/05_63BITS_MVC_Application_Structure_01_Todo_Products_List/image1.png)
 
 <br>
 
@@ -37,13 +37,13 @@ From this concept, we can identify three primary page components:
 
 To support this structure visually, look at the sample page below:
 
-![Sample rendered Products page showing a page title ("Products"), and a row of product cards each displaying an image, name, price, and a View Details button](../images/08_63BITS_MVC_Application_Structure_01_Todo/image2.png)
+![Sample rendered Products page showing a page title ("Products"), and a row of product cards each displaying an image, name, price, and a View Details button](../images/05_63BITS_MVC_Application_Structure_01_Todo_Products_List/image2.png)
 
 <br>
 
 Implement the code according to the screenshot below.
 
-![ProductsWebsiteModel.cs showing a nested ViewModel class with a Products list and HasProducts property, and a nested Product class within it defining ProductName, ProductCoverImageHttpPath, ProductPrice, and UrlProductDetails properties](../images/08_63BITS_MVC_Application_Structure_01_Todo/image3.png)
+![ProductsWebsiteModel.cs showing a nested ViewModel class with a Products list and HasProducts property, and a nested Product class within it defining ProductName, ProductCoverImageHttpPath, ProductPrice, and UrlProductDetails properties](../images/05_63BITS_MVC_Application_Structure_01_Todo_Products_List/image3.png)
 
 <br>
 
@@ -73,7 +73,7 @@ Complete the `ProductsWebsiteModel` class by implementing the `GetViewModel()` m
 
 Implement the code according to the screenshot below.
 
-![ProductsWebsiteModel.cs with the GetViewModel method implemented: it creates the repository via RepositoryFactory, calls repository.ProductsList(), maps each item to a ViewModel.Product using Utilities.FormatPrice and FileStorage.GetUploadedFileHttpPath, sets the page title, and returns the populated ViewModel](../images/08_63BITS_MVC_Application_Structure_01_Todo/image4.png)
+![ProductsWebsiteModel.cs with the GetViewModel method implemented: it creates the repository via RepositoryFactory, calls repository.ProductsList(), maps each item to a ViewModel.Product using Utilities.FormatPrice and FileStorage.GetUploadedFileHttpPath, sets the page title, and returns the populated ViewModel](../images/05_63BITS_MVC_Application_Structure_01_Todo_Products_List/image4.png)
 
 <br>
 
@@ -106,7 +106,7 @@ Inside the **Products** directory, create a new file named **ProductsWebsiteCont
 
 Implement the code according to the screenshot below.
 
-![Solution Explorer showing the new ProductsWebsiteController.cs file under Controllers/Website/Products, with the class declared as public class ProductsWebsiteController : WebsiteControllerBase<ProductsWebsiteModel>](../images/08_63BITS_MVC_Application_Structure_01_Todo/image5.png)
+![Solution Explorer showing the new ProductsWebsiteController.cs file under Controllers/Website/Products, with the class declared as public class ProductsWebsiteController : WebsiteControllerBase<ProductsWebsiteModel>](../images/05_63BITS_MVC_Application_Structure_01_Todo_Products_List/image5.png)
 
 <br>
 
@@ -122,7 +122,7 @@ Each controller is associated with exactly one view, and each view is associated
 
 Implement the code according to the screenshot below.
 
-![ProductsWebsiteController.cs with a Properties region declaring const string _viewName = "~/Views/Website/Products/ProductsWebsiteView.cshtml"](../images/08_63BITS_MVC_Application_Structure_01_Todo/image6.png)
+![ProductsWebsiteController.cs with a Properties region declaring const string _viewName = "~/Views/Website/Products/ProductsWebsiteView.cshtml"](../images/05_63BITS_MVC_Application_Structure_01_Todo_Products_List/image6.png)
 
 <br>
 
@@ -132,7 +132,7 @@ Before implementing actions, review the following resource to understand *Attrib
 
 Implement the code according to the screenshot below.
 
-![ProductsWebsiteController.cs with an Actions region containing the Products action, decorated with [Route("products", Name = $"{nameof(ProductsWebsiteController)}{nameof(Products)}")], which awaits Model.GetViewModel() and returns View(_viewName, viewModel)](../images/08_63BITS_MVC_Application_Structure_01_Todo/image7.png)
+![ProductsWebsiteController.cs with an Actions region containing the Products action, decorated with [Route("products", Name = $"{nameof(ProductsWebsiteController)}{nameof(Products)}")], which awaits Model.GetViewModel() and returns View(_viewName, viewModel)](../images/05_63BITS_MVC_Application_Structure_01_Todo_Products_List/image7.png)
 
 <br>
 
@@ -142,7 +142,7 @@ Navigate to **SixtyThreeBits.Web → Views → Website** and create a new direct
 
 Implement the code, connecting the model to the view according to the screenshot below.
 
-![ProductsWebsiteView.cshtml with the model directive @model ProductsWebsiteModel.ViewModel declared at the top of the file](../images/08_63BITS_MVC_Application_Structure_01_Todo/image8.png)
+![ProductsWebsiteView.cshtml with the model directive @model ProductsWebsiteModel.ViewModel declared at the top of the file](../images/05_63BITS_MVC_Application_Structure_01_Todo_Products_List/image8.png)
 
 <br>
 
@@ -150,41 +150,41 @@ Navigate to **SixtyThreeBits.Web → wwwroot → html → products.html**.
 
 `products.html` is a static HTML file which we will use to build the dynamic `.cshtml` view.
 
-![File Explorer and Solution Explorer showing products.html located in wwwroot/html, alongside the other static HTML reference files](../images/08_63BITS_MVC_Application_Structure_01_Todo/image9.png)
+![File Explorer and Solution Explorer showing products.html located in wwwroot/html, alongside the other static HTML reference files](../images/05_63BITS_MVC_Application_Structure_01_Todo_Products_List/image9.png)
 
 <br>
 
 Open `products.html` using your **web browser**. This is how your final result must look.
 
-![Sample static products.html rendered in the browser: an E-Commerce page with a navbar, a "Products" page header, and a row of four product cards each with image, name, price, and a View Details button](../images/08_63BITS_MVC_Application_Structure_01_Todo/image10.png)
+![Sample static products.html rendered in the browser: an E-Commerce page with a navbar, a "Products" page header, and a row of four product cards each with image, name, price, and a View Details button](../images/05_63BITS_MVC_Application_Structure_01_Todo_Products_List/image10.png)
 
 <br>
 
 Open the **products.html** file in Visual Studio to see the HTML code.
 
-![products.html opened in Visual Studio, showing the full page structure including <head>, <nav>, <header>, a <section class="py-5"> containing the repeating product <div class="col mb-5"> cards, and <footer>](../images/08_63BITS_MVC_Application_Structure_01_Todo/image11.png)
+![products.html opened in Visual Studio, showing the full page structure including <head>, <nav>, <header>, a <section class="py-5"> containing the repeating product <div class="col mb-5"> cards, and <footer>](../images/05_63BITS_MVC_Application_Structure_01_Todo_Products_List/image11.png)
 
 <br>
 
 Copy the `<section>` HTML block and paste it into your **ProductsWebsiteView.cshtml** file.
 
-![ProductsWebsiteView.cshtml with the @model directive and the copied <section class="py-5"> block, containing the container, row, and repeating product card markup from products.html](../images/08_63BITS_MVC_Application_Structure_01_Todo/image12.png)
+![ProductsWebsiteView.cshtml with the @model directive and the copied <section class="py-5"> block, containing the container, row, and repeating product card markup from products.html](../images/05_63BITS_MVC_Application_Structure_01_Todo_Products_List/image12.png)
 
 <br>
 
 You don't need to copy the `<html>`, `<body>`, `<header>`, and `<footer>` elements above and below the `<section>` tag — they are already provided by **_Layout.cshtml**, which wraps all website-level views.
 
-![_Layout.cshtml showing the shared <nav>, <header> with @Html.Raw(Model.PageTitle.Value), @RenderBody() marking where ProductsWebsiteView.cshtml's content is inserted, and the shared <footer>](../images/08_63BITS_MVC_Application_Structure_01_Todo/image13.png)
+![_Layout.cshtml showing the shared <nav>, <header> with @Html.Raw(Model.PageTitle.Value), @RenderBody() marking where ProductsWebsiteView.cshtml's content is inserted, and the shared <footer>](../images/05_63BITS_MVC_Application_Structure_01_Todo_Products_List/image13.png)
 
 <br>
 
 Replace the repeating static HTML `<div>` blocks with a `foreach` loop that iterates through the `Products` collection provided by the controller and model via `@model`.
 
-![ProductsWebsiteView.cshtml showing the four repeating <div class="col mb-5"> product card blocks, annotated with arrows indicating they should be replaced with a foreach loop](../images/08_63BITS_MVC_Application_Structure_01_Todo/image14.png)
+![ProductsWebsiteView.cshtml showing the four repeating <div class="col mb-5"> product card blocks, annotated with arrows indicating they should be replaced with a foreach loop](../images/05_63BITS_MVC_Application_Structure_01_Todo_Products_List/image14.png)
 
 <br>
 
-![ProductsWebsiteView.cshtml after the change: a single @if (Model.HasProducts) block containing a foreach (var product in Model.Products) loop that renders one product card per iteration using @Html.Raw for ProductCoverImageHttpPath, ProductName, ProductPrice, and UrlProductDetails](../images/08_63BITS_MVC_Application_Structure_01_Todo/image15.png)
+![ProductsWebsiteView.cshtml after the change: a single @if (Model.HasProducts) block containing a foreach (var product in Model.Products) loop that renders one product card per iteration using @Html.Raw for ProductCoverImageHttpPath, ProductName, ProductPrice, and UrlProductDetails](../images/05_63BITS_MVC_Application_Structure_01_Todo_Products_List/image15.png)
 
 <br>
 
@@ -219,10 +219,10 @@ Next, download appropriate product images from the web and place them in the **w
 
 To run the project, press **CTRL + F5**. The browser will open automatically, and the home page will load. You should see a page similar to the example shown below.
 
-![63BITS Onboarding home page running in the browser at localhost, showing the navbar with Home and Products links, a page header, and a "Login To Admin" button](../images/08_63BITS_MVC_Application_Structure_01_Todo/image16.png)
+![63BITS Onboarding home page running in the browser at localhost, showing the navbar with Home and Products links, a page header, and a "Login To Admin" button](../images/05_63BITS_MVC_Application_Structure_01_Todo_Products_List/image16.png)
 
 <br>
 
 To view the Products page, manually navigate to **/products** in the browser address bar. The Products page will then load and display the results.
 
-![Products page running in the browser at localhost/products, displaying a row of product cards populated from the database, each with an image, name, price, and View Details button](../images/08_63BITS_MVC_Application_Structure_01_Todo/image17.png)
+![Products page running in the browser at localhost/products, displaying a row of product cards populated from the database, each with an image, name, price, and View Details button](../images/05_63BITS_MVC_Application_Structure_01_Todo_Products_List/image17.png)

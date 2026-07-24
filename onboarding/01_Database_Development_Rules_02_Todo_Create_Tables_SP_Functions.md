@@ -22,43 +22,43 @@ This exercise will help you implement the coding standards from the Database Dev
 
 Create 3 tables according to screenshots below:
 
-![Right-click Tables > New > Table in SSMS Object Explorer](../images/01_Database_Development_Rules_02_Todo/image1.png)
+![Right-click Tables > New > Table in SSMS Object Explorer](../images/01_Database_Development_Rules_02_Todo_Create_Tables_SP_Functions/image1.png)
 
 <br><br>
 
 **Products**
 
-![Products table designer with ProductID column set as Identity Specification Yes, Identity Seed 1](../images/01_Database_Development_Rules_02_Todo/image2.png)
+![Products table designer with ProductID column set as Identity Specification Yes, Identity Seed 1](../images/01_Database_Development_Rules_02_Todo_Create_Tables_SP_Functions/image2.png)
 
-![Products table designer with ProductDateCreated column set to datetime, not nullable, defaulting to (getdate())](../images/01_Database_Development_Rules_02_Todo/image3.png)
+![Products table designer with ProductDateCreated column set to datetime, not nullable, defaulting to (getdate())](../images/01_Database_Development_Rules_02_Todo_Create_Tables_SP_Functions/image3.png)
 
 <br><br>
 
 **ProductsImages**
 
-![ProductsImages table designer with ProductImageID column set as Identity Specification Yes, Identity Seed 1](../images/01_Database_Development_Rules_02_Todo/image4.png)
+![ProductsImages table designer with ProductImageID column set as Identity Specification Yes, Identity Seed 1](../images/01_Database_Development_Rules_02_Todo_Create_Tables_SP_Functions/image4.png)
 
-![ProductsImages table designer with ProductImageDateCreated column set to datetime, not nullable, defaulting to (getdate())](../images/01_Database_Development_Rules_02_Todo/image5.png)
+![ProductsImages table designer with ProductImageDateCreated column set to datetime, not nullable, defaulting to (getdate())](../images/01_Database_Development_Rules_02_Todo_Create_Tables_SP_Functions/image5.png)
 
 <br>
 
 Create PK – FK relationship between two tables, set UPDATE CASCADE and DELETE CASCADE.
 
-![Foreign Key Relationships dialog for FK_ProductsImages_Products with Delete Rule and Update Rule set to Cascade](../images/01_Database_Development_Rules_02_Todo/image6.png)
+![Foreign Key Relationships dialog for FK_ProductsImages_Products with Delete Rule and Update Rule set to Cascade](../images/01_Database_Development_Rules_02_Todo_Create_Tables_SP_Functions/image6.png)
 
 <br><br>
 
 **Categories**
 
-![Categories table designer with CategoryID column set as Identity Specification Yes, Identity Seed 1](../images/01_Database_Development_Rules_02_Todo/image7.png)
+![Categories table designer with CategoryID column set as Identity Specification Yes, Identity Seed 1](../images/01_Database_Development_Rules_02_Todo_Create_Tables_SP_Functions/image7.png)
 
-![Categories table designer with CategoryDateCreated column defaulting to (getdate())](../images/01_Database_Development_Rules_02_Todo/image8.png)
+![Categories table designer with CategoryDateCreated column defaulting to (getdate())](../images/01_Database_Development_Rules_02_Todo_Create_Tables_SP_Functions/image8.png)
 
 <br><br>
 
 Create PK – FK relationship between two Products and Categories, set **UPDATE No Action** and **DELETE No Action**, because we don't want to remove products when category is deleted.
 
-![Foreign Key Relationships dialog for FK_Products_Categories with Delete Rule and Update Rule set to No Action](../images/01_Database_Development_Rules_02_Todo/image9.png)
+![Foreign Key Relationships dialog for FK_Products_Categories with Delete Rule and Update Rule set to No Action](../images/01_Database_Development_Rules_02_Todo_Create_Tables_SP_Functions/image9.png)
 
 ---
 
@@ -68,11 +68,11 @@ Create PK – FK relationship between two Products and Categories, set **UPDATE 
 
 Create stored procedure to handle INSERT, UPDATE and DELETE operations operation for one product. Use all materials learned and don't forget to apply naming and formatting rules.
 
-![Right-click Stored Procedures > New > Stored Procedure in SSMS Object Explorer](../images/01_Database_Development_Rules_02_Todo/image10.png)
+![Right-click Stored Procedures > New > Stored Procedure in SSMS Object Explorer](../images/01_Database_Development_Rules_02_Todo_Create_Tables_SP_Functions/image10.png)
 
 SQL Server management studio will automatically generate a template. Manually implement stored procedure according to screenshot below, <u>do not copy and paste code from previous document</u>:
 
-![Completed ProductsIUD stored procedure script implementing INSERT, UPDATE, and DELETE logic with TRY/CATCH error handling](../images/01_Database_Development_Rules_02_Todo/image11.png)
+![Completed ProductsIUD stored procedure script implementing INSERT, UPDATE, and DELETE logic with TRY/CATCH error handling](../images/01_Database_Development_Rules_02_Todo_Create_Tables_SP_Functions/image11.png)
 
 After you finish writing stored procedure, test it, make sure all three INSERT, UPDATE and DELETE operations work as they are supposed to.
 
@@ -90,7 +90,9 @@ EXEC UtilitiesGenerateIudScript 'Products'
 
 Don't forget to review and make sure that IUD script generated by **UtilitiesGenerateIudScript** is properly reflecting your needs.
 
-Ensure that all outlined rules for [Stored Procedures](./02_Database_Development_Rules.md#stored-procedure-development-rules) are carefully considered.
+<br>
+
+**Ensure that all outlined rules for Stored Procedures are carefully considered.**
 
 ---
 
@@ -100,13 +102,15 @@ Ensure that all outlined rules for [Stored Procedures](./02_Database_Development
 
 Create table valued function to query all records from your products table. Use all materials you learned and don't forget to apply naming and formatting rules.
 
-![Right-click Functions > Table-valued Functions > New Inline Table-valued Function in SSMS Object Explorer](../images/01_Database_Development_Rules_02_Todo/image12.png)
+![Right-click Functions > Table-valued Functions > New Inline Table-valued Function in SSMS Object Explorer](../images/01_Database_Development_Rules_02_Todo_Create_Tables_SP_Functions/image12.png)
 
 Implement stored procedure according to screenshot below, <u>do not copy and paste code from previous document</u>:
 
-![Completed ProductsList inline table-valued function script](../images/01_Database_Development_Rules_02_Todo/image13.png)
+![Completed ProductsList inline table-valued function script](../images/01_Database_Development_Rules_02_Todo_Create_Tables_SP_Functions/image13.png)
 
-Ensure that all outlined rules for [Table Valued Functions](./02_Database_Development_Rules.md#list-inline-table-valued-function) are carefully considered.
+<br>
+
+**Ensure that all outlined rules for Table Valued Functions are carefully considered.**
 
 ---
 
@@ -116,7 +120,7 @@ Ensure that all outlined rules for [Table Valued Functions](./02_Database_Develo
 
 Create Scalar-valued Function, to retrieve single product by it's ID. Review "**GetSingle Scalar-Valued Function**" section carefully one more time. An example provided in that section, queries one product by ID with all product images and return result as a JSON.
 
-![Right-click Functions > Scalar-valued Functions > New Scalar-valued Function in SSMS Object Explorer](../images/01_Database_Development_Rules_02_Todo/image14.png)
+![Right-click Functions > Scalar-valued Functions > New Scalar-valued Function in SSMS Object Explorer](../images/01_Database_Development_Rules_02_Todo_Create_Tables_SP_Functions/image14.png)
 
 Insert data into corresponding tables manually, so you can clearly see the JSON result of your function call.
 
@@ -124,6 +128,8 @@ Implement stored procedure according to screenshot below, <u>do not copy and pas
 
 P.S. Pay attention to the LEFT JOIN Categories part of the example script, it is used because product might not have Category assigned to it.
 
-![Completed ProductsGetSingleByID scalar-valued function script returning product data with its category and images as JSON](../images/01_Database_Development_Rules_02_Todo/image15.png)
+![Completed ProductsGetSingleByID scalar-valued function script returning product data with its category and images as JSON](../images/01_Database_Development_Rules_02_Todo_Create_Tables_SP_Functions/image15.png)
 
-Ensure that all outlined rules for [Scalar Valued Functions](./02_Database_Development_Rules.md#getsingle-scalar-valued-function) are carefully considered.
+<br>
+
+**Ensure that all outlined rules for Scalar Valued Functionsare carefully considered.**

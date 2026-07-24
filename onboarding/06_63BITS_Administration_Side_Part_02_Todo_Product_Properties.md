@@ -10,7 +10,7 @@ Process begins with setting up permissions.
 
 Launch the application and navigate to **User Management → Permissions**. Create the following permission hierarchy according to the instructions below:
 
-![User Management Permissions screen showing the new permission entry for the Product Properties page](../images/09_63BITS_Administration_Side_Part_02_Todo/image1.png)
+![User Management Permissions screen showing the new permission entry for the Product Properties page](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image1.png)
 
 The Page Url field uses a regular expression (`\d+`) to match numeric values. This allows the permission engine to validate access for any `ProductID`. For example, the pattern matches URLs like `/admin/products/4/properties` regardless of the specific product ID.
 
@@ -22,7 +22,7 @@ After registering the permissions, navigate to **User Management → Role Permis
 
 The implementation begins by reviewing the expected layout of the Product Properties page and identifying the UI components required to build it.
 
-![Wireframe of the Product Properties page layout showing the Save button, Published checkbox, product name input, price input, categories dropdown, and cover image uploader](../images/09_63BITS_Administration_Side_Part_02_Todo/image2.png)
+![Wireframe of the Product Properties page layout showing the Save button, Published checkbox, product name input, price input, categories dropdown, and cover image uploader](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image2.png)
 
 The page should include these elements:
 
@@ -41,7 +41,7 @@ Navigate to **SixtyThreeBits.Web → Models → Admin → Products** and create 
 
 Start building `ProductPropertiesAdminModel` according to the screenshot below.
 
-![ProductPropertiesAdminModel.cs class declaration inheriting from FormViewModelBase63](../images/09_63BITS_Administration_Side_Part_02_Todo/image3.png)
+![ProductPropertiesAdminModel.cs class declaration inheriting from FormViewModelBase63](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image3.png)
 
 The ViewModel class inherits from `FormViewModelBase63`, which provides shared form validation helper components used across all forms in the application. `FormViewModelBase` is located at **SixtyThreeBits.Web → Domain → ViewModels → Base → FormViewModelBase.cs**.
 
@@ -53,7 +53,7 @@ All ViewModels for form-based pages must inherit from `FormViewModelBase63`.
 
 Now let's add the following properties to our ViewModel class.
 
-![ViewModel class showing the ProductCoverImage and Categories properties added to ProductPropertiesAdminModel](../images/09_63BITS_Administration_Side_Part_02_Todo/image4.png)
+![ViewModel class showing the ProductCoverImage and Categories properties added to ProductPropertiesAdminModel](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image4.png)
 
 The ViewModel includes two notable properties:
 
@@ -68,7 +68,7 @@ Unlike the DevExtreme DataGrid, we use `KeyValueSelectedTuple` instead of `KeyVa
 
 Add `public ProductDTO Product` to the `ProductAdminModel`, exactly as we did on the front-end, and implement the `GetViewModel()` method according to the screenshot below.
 
-![GetViewModel method implementation on ProductPropertiesAdminModel](../images/09_63BITS_Administration_Side_Part_02_Todo/image5.png)
+![GetViewModel method implementation on ProductPropertiesAdminModel](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image5.png)
 
 Let's break down the code:
 
@@ -80,7 +80,7 @@ This method signature and behavior is specifically designed for form-based pages
 
 When the page is initially requested, the application must load product data from the database and populate the viewModel. Since no user data has been submitted yet, the `viewModel` parameter is `null` and the following block is executed:
 
-![Code block showing the ViewModel being initialized and populated from the database when viewModel is null](../images/09_63BITS_Administration_Side_Part_02_Todo/image6.png)
+![Code block showing the ViewModel being initialized and populated from the database when viewModel is null](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image6.png)
 
 This initializes a new ViewModel instance and assigns values from the database.
 
@@ -95,7 +95,7 @@ When the user submits the form, the MVC Model Binding process automatically popu
 
 After the if block, the following code runs in both scenarios (initial page load and form submission):
 
-![Shared assignment code that runs regardless of whether the page was loaded via GET or POST](../images/09_63BITS_Administration_Side_Part_02_Todo/image7.png)
+![Shared assignment code that runs regardless of whether the page was loaded via GET or POST](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image7.png)
 
 These properties must always come from the database, regardless of request type, because they depend on system context rather than user input.
 
@@ -109,7 +109,7 @@ This section is dedicated to the validation logic that will be executed after th
 
 Implement this method according to the instructions below:
 
-![validateSubmitModel method implementation using ValidationResult63, Error63, and Validation63](../images/09_63BITS_Administration_Side_Part_02_Todo/image8.png)
+![validateSubmitModel method implementation using ValidationResult63, Error63, and Validation63](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image8.png)
 
 Let's break down the code:
 
@@ -173,7 +173,7 @@ Since our client-side implementation is based on jQuery, the `Validation63` clas
 
 for generating the appropriate error keys, that will be used on the client-side, by jQuery, to display and highlight error locations in red. These utilities significantly simplify the client-side rendering process.
 
-![Code showing the use of Validation63.GetJQueryNameSelectorFor to populate the errorKey](../images/09_63BITS_Administration_Side_Part_02_Todo/image9.png)
+![Code showing the use of Validation63.GetJQueryNameSelectorFor to populate the errorKey](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image9.png)
 
 For additional understanding of how jQuery selectors work, refer to the documentation below:
 
@@ -187,7 +187,7 @@ The next step for the model is to implement the `Save()` method, which will stor
 
 Implement this method according to the instructions below:
 
-![Save method implementation showing GetViewModel, validateSubmitModel, and image handling logic](../images/09_63BITS_Administration_Side_Part_02_Todo/image10.png)
+![Save method implementation showing GetViewModel, validateSubmitModel, and image handling logic](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image10.png)
 
 Let's break down the code:
 
@@ -218,7 +218,7 @@ If an error is returned by the repository, it is treated as a non-validation err
 
 `AddToastError` — method is inherited from `FormViewModelBase63`.
 
-![Save method continued, showing repository error handling with AddToastError](../images/09_63BITS_Administration_Side_Part_02_Todo/image11.png)
+![Save method continued, showing repository error handling with AddToastError](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image11.png)
 
 <br>
 
@@ -228,11 +228,11 @@ If an error is returned by the repository, it is treated as a non-validation err
 
 Implement this method according to the instructions below:
 
-![DeleteImage method implementation on ProductPropertiesAdminModel](../images/09_63BITS_Administration_Side_Part_02_Todo/image12.png)
+![DeleteImage method implementation on ProductPropertiesAdminModel](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image12.png)
 
 The system will use it to remove the product cover image via an AJAX call.
 
-![Code showing how DeleteImage is invoked via AJAX](../images/09_63BITS_Administration_Side_Part_02_Todo/image13.png)
+![Code showing how DeleteImage is invoked via AJAX](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image13.png)
 
 <br>
 
@@ -242,19 +242,19 @@ Navigate to **SixtyThreeBits.Web → Controllers → Admin → Products** and cr
 
 Implement `_viewName` and `OnActionExecutionAsync` similar to `WebsiteController`. Follow the screenshot instructions and note the arrows indicating differences from the website implementation.
 
-![ProductPropertiesAdminController showing _viewName and OnActionExecutionAsync implementation](../images/09_63BITS_Administration_Side_Part_02_Todo/image14.png)
+![ProductPropertiesAdminController showing _viewName and OnActionExecutionAsync implementation](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image14.png)
 
 Next, implement the action methods according to the instructions below.
 
-![Controller action methods for the Product Properties page](../images/09_63BITS_Administration_Side_Part_02_Todo/image15.png)
+![Controller action methods for the Product Properties page](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image15.png)
 
 Once all controller actions are created, go back to **ProductPropertiesAdminModel** and set the proper URL for deleting the product image.
 
-![ProductPropertiesAdminModel updated with the delete image URL](../images/09_63BITS_Administration_Side_Part_02_Todo/image16.png)
+![ProductPropertiesAdminModel updated with the delete image URL](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image16.png)
 
 Also go back to **ProductsAdminModel** and set the proper URL for the product properties page.
 
-![ProductsAdminModel updated with the product properties page URL](../images/09_63BITS_Administration_Side_Part_02_Todo/image17.png)
+![ProductsAdminModel updated with the product properties page URL](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image17.png)
 
 <br>
 
@@ -264,11 +264,11 @@ Navigate to **SixtyThreeBits.Web → Views → Admin → Products** and create t
 
 This view will be more extensive than previous examples, so we will construct it incrementally by adding small, manageable blocks of HTML.
 
-![View header associating the ViewModel with the view and rendering the Save button card](../images/09_63BITS_Administration_Side_Part_02_Todo/image18.png)
+![View header associating the ViewModel with the view and rendering the Save button card](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image18.png)
 
 The code above associates the ViewModel with the view and renders a Bootstrap card containing the Save button. The button includes the attribute `form="form"`, which indicates that clicking the button must submit the form with `id="form"`.
 
-![Bootstrap card markup containing the Save button](../images/09_63BITS_Administration_Side_Part_02_Todo/image19.png)
+![Bootstrap card markup containing the Save button](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image19.png)
 
 The next section creates another Bootstrap card that contains the form used to edit product properties:
 
@@ -278,7 +278,7 @@ The next section creates another Bootstrap card that contains the form used to e
 - `method="post"` — specifies that the form data should be submitted using an HTTP POST request.
 - `enctype="multipart/form-data"` — required when the form includes file uploads, such as images.
 
-![Form element markup with id, method, and enctype attributes](../images/09_63BITS_Administration_Side_Part_02_Todo/image20.png)
+![Form element markup with id, method, and enctype attributes](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image20.png)
 
 This block creates a row containing a checkbox element that represents whether the product is published. Below is a breakdown of the key attributes used in the checkbox:
 
@@ -286,7 +286,7 @@ This block creates a row containing a checkbox element that represents whether t
 - `value="true"` — this value must always be explicitly provided for correct model binding. All checkbox inputs should follow this requirement.
 - `(Model.ProductIsPublished ? Html.Raw("checked") : null)` — this logic determines whether the checkbox should be pre-selected. If the product is published, the `checked` attribute is rendered; otherwise, it is omitted.
 
-![Published checkbox markup with model-bound name, value, and checked attributes](../images/09_63BITS_Administration_Side_Part_02_Todo/image21.png)
+![Published checkbox markup with model-bound name, value, and checked attributes](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image21.png)
 
 These lines create a row containing the **ProductName** and **ProductPrice** input elements. Similar to the checkbox example, the name attribute enables model binding.
 
@@ -304,7 +304,7 @@ The result is the following: we display a formatted value (`ProductPriceString`)
 
 `<div class="invalid-feedback"></div>` — serves as the container where validation error messages will be displayed when validation fails.
 
-![ProductName and ProductPrice input markup with model binding attributes](../images/09_63BITS_Administration_Side_Part_02_Todo/image22.png)
+![ProductName and ProductPrice input markup with model binding attributes](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image22.png)
 
 These lines create a row that contains the **Categories** drop-down list and the **Product Cover Image** upload component.
 
@@ -340,7 +340,7 @@ These attributes enable full-screen image preview functionality handled by the c
 - `name="@nameof(Model.ProductCoverImage)"` — maps the file upload to the `IFormFile ProductCoverImage` property.
 - `accept="image/*"` — filters the file selection dialog to display only image files.
 
-![Categories dropdown and Product Cover Image upload component markup](../images/09_63BITS_Administration_Side_Part_02_Todo/image23.png)
+![Categories dropdown and Product Cover Image upload component markup](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image23.png)
 
 `@section FooterSection` — is the section where page-specific JavaScript code is included. This section loads the JavaScript file associated with the view and checks whether any errors were reported by the Model.
 
@@ -363,7 +363,7 @@ validation.init({ errorsJson: @Html.Raw(Model.FormErrorsJson) }).showErrors();
 
 The script above is responsible for displaying error messages collected at the model level.
 
-![FooterSection script block wiring up client-side validation](../images/09_63BITS_Administration_Side_Part_02_Todo/image24.png)
+![FooterSection script block wiring up client-side validation](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image24.png)
 
 ```
 <script>
@@ -381,7 +381,7 @@ Navigate to **SixtyThreeBits.Web → wwwroot → js → admin → products** and
 
 Implement the JavaScript according to the screenshot below.
 
-![ProductPropertiesAdminView.js showing the model object and numericInput registration](../images/09_63BITS_Administration_Side_Part_02_Todo/image25.png)
+![ProductPropertiesAdminView.js showing the model object and numericInput registration](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image25.png)
 
 The JavaScript portion here is minimal. We define a `model` object, but no properties or functions are added at this time; they are not needed, but the structure is maintained solely for consistency across the project.
 
@@ -395,7 +395,7 @@ This setup guarantees correct input formatting for product price values.
 
 Launch your application, navigate to the products page, and make sure that the link to the product properties page works.
 
-![Products listing page showing the link to the Product Properties page](../images/09_63BITS_Administration_Side_Part_02_Todo/image26.png)
+![Products listing page showing the link to the Product Properties page](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image26.png)
 
 In case you see a 404 page, double check Role — Permissions. Login — Logout and try to click the product properties link again.
 
@@ -405,4 +405,4 @@ Once you are on the properties page:
 - Test the price numeric field, making sure no characters are allowed.
 - Test image upload/delete. Check the **wwwroot\upload** directory, and make sure that the file is uploaded and deleted from the hard drive.
 
-![Completed Product Properties page with populated fields and cover image](../images/09_63BITS_Administration_Side_Part_02_Todo/image27.png)
+![Completed Product Properties page with populated fields and cover image](../images/06_63BITS_Administration_Side_Part_02_Todo_Product_Properties/image27.png)

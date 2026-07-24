@@ -77,7 +77,7 @@ Repositories/
 | `Repositories/Products/DTO/ProductsIudDTO.cs` | File | Insert/Update/Delete DTO |
 | `Repositories/Products/DTO/ProductsListDTO.cs` | File | List-view DTO |
 
-![Solution Explorer showing the Repositories/Products folder structure, including ProductsRepository.cs and the DTO subdirectory with ProductDTO.cs, ProductsIudDTO.cs, and ProductsListDTO.cs](../images/07_63BITS_Repositories_00_Main/image1.png)
+![Solution Explorer showing the Repositories/Products folder structure, including ProductsRepository.cs and the DTO subdirectory with ProductDTO.cs, ProductsIudDTO.cs, and ProductsListDTO.cs](../images/04_63BITS_Repositories_00_Main/image1.png)
 
 <br>
 
